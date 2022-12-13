@@ -48,7 +48,8 @@ class Config:
   """Configuration flags for everything."""
   dataset_loader: str = 'llff'  # The type of dataset loader to use.
   batching: str = 'all_images'  # Batch composition, [single_image, all_images].
-  batch_size: int = 16384  # The number of rays/pixels in each batch.
+  #batch_size: int = 16384  # The number of rays/pixels in each batch.
+  batch_size: int = 4000
   patch_size: int = 1  # Resolution of patches sampled for training batches.
   factor: int = 0  # The downsample factor of images, 0 for no downsampling.
   load_alphabetical: bool = True  # Load images in COLMAP vs alphabetical
@@ -78,11 +79,12 @@ class Config:
   vis_decimate: int = 0
 
   # Only used by train.py:
-  max_steps: int = 250000  # The number of optimization steps.
+  #max_steps: int = 250000  # The number of optimization steps.
+  max_steps: int = 1000000 
   early_exit_steps: Optional[int] = None  # Early stopping, for debugging.
   checkpoint_every: int = 25000  # The number of steps to save a checkpoint.
   print_every: int = 100  # The number of steps between reports to tensorboard.
-  train_render_every: int = 5000  # Steps between test set renders when training
+  train_render_every: int = 5000000  # Steps between test set renders when training
   cast_rays_in_train_step: bool = False  # If True, compute rays in train step.
   data_loss_type: str = 'charb'  # What kind of loss to use ('mse' or 'charb').
   charb_padding: float = 0.001  # The padding used for Charbonnier loss.
@@ -105,8 +107,10 @@ class Config:
   # Any model parameter that isn't specified gets a mult of 0. See the
   # train_weight_l2_* parameters in TensorBoard to know what can be regularized.
 
-  lr_init: float = 0.002  # The initial learning rate.
-  lr_final: float = 0.00002  # The final learning rate.
+  #lr_init: float = 0.002  # The initial learning rate.
+  lr_init: float = 0.0005
+  #lr_final: float = 0.00002  # The final learning rate.
+  lr_final: float = 0.000005
   lr_delay_steps: int = 512  # The number of "warmup" learning steps.
   lr_delay_mult: float = 0.01  # How much sever the "warmup" should be.
   adam_beta1: float = 0.9  # Adam's beta2 hyperparameter.
