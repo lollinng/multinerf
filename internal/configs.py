@@ -82,7 +82,7 @@ class Config:
   #max_steps: int = 250000  # The number of optimization steps.
 #   max_steps: int = 1000000 
 
-  max_steps: int = 675,000 
+  max_steps: int = 675000 
   early_exit_steps: Optional[int] = None  # Early stopping, for debugging.
   checkpoint_every: int = 25000  # The number of steps to save a checkpoint.
   print_every: int = 100  # The number of steps between reports to tensorboard.
