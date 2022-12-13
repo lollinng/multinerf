@@ -14,9 +14,15 @@
 
 """Training script."""
 
+
+import os
+os.environ['XLA_FLAGS'] = "--xla_gpu_force_compilation_parallelism=1"
+os.environ['TF_GPU_ALLOCATOR'] = "cuda_malloc_async"
+
 import functools
 import gc
 import time
+
 
 from absl import app
 import flax
